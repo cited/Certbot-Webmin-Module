@@ -1,12 +1,12 @@
 # Info
 Certbot module for Webmin
 
-Copyright Cited, Inc. 2017
+Copyright Cited, Inc. 2019
 
 # How to install
 Archive module
 
-	$ git clone http://git.sh8.eu/LymonHead/certbot.git
+	$ git clone 
 	$ tar -cvzf certbot.wbm.gz certbot/
 
 Upload from Webmin->Webmin Configuration->Webmin Modules
