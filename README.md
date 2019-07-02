@@ -33,21 +33,21 @@ Go to Servers-> Certbott (you may need to refresh page)
 # Authenticated theme Issues
 	- save_cfg.cgi - redirect() hides the Webmin menu!
 
-# Links
-- [certbot User Guide](https://certbot.eff.org/docs/using.html)
-- [certbot config file](https://certbot.eff.org/docs/using.html#config-file)
-
 #TODO
 - Shadow max-log-backups in 'CLI Options', if wehave a logrotate.d certbot file
 - Options in cli.ini with spaces (var = value), are not respected from our editor!
 - Add Nginx plugins for CertBot in setup.cgi
 
-# Notes
+# Additional
 - CentOS has more Certbot plugins
 - Apache vconf is not updated, after deleting a certificate!
 
 ## **Issues**
 Please report issue here or at hello@acugis.com
+
+# Certbot Links
+- [Certbot User Guide](https://certbot.eff.org/docs/using.html)
+- [Certbot config file](https://certbot.eff.org/docs/using.html#config-file)
 
 Copyright
 ---------
