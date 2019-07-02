@@ -1,0 +1,96 @@
+index_title=CertBot
+index_root=The root directory is $1.
+index_return=CertBot
+index_return_certs=Certificates
+
+manual_title=Edit config
+manual_ecannot=You are not allowed to edit the config file
+manual_ok=Edit
+manual_efile=Selected file is not part of the Let's Encrypt configuration
+manual_file=Edit config file:
+manual_edata=Nothing entered!
+manual_err=Failed to save config file
+
+logs_title=Log
+
+options_title=CLI Options
+options_desc=Certbot options grouped by context. Loaded at each certbot command execution from cli.ini
+options_save=Save
+options_err1=Unknown option
+
+certificates_title=Certificates
+certificates_desc=List of certificates from certbot. Click on a certificate name for detailed page. You can request a new certificate from
+certificates_desc2=Details and management for certificate with name:
+cert_header=OpenSSL details for certificate
+cert_tab_control=Control
+cert_tab_details=Details
+cert_tbl_info=Certificate information
+cert_name=Certificate name
+cert_domains=Domains
+cert_file=Certificate file
+cert_keyfile=Key file
+cert_usedin=Used in
+
+cert_install=Install
+cert_install_msg=Install a SSL certificate automatically
+cert_install_desc=Certbot will update your server configuration, to enable SSL and use certificate for domain
+cert_tbl_install=Select at which domains to install the certificate
+
+cert_revoke=Revoke
+cert_renew=Renew
+cert_delete=Delete
+
+cert_test=Test
+cert_tbl_test=Select which domain to test
+cert_test_desc=Test domain SSL certificate online at ssllabs.com
+
+cert_tbl_revoke=Select revoke options
+revoke_reasons=Reason for revoking
+revoke_and_delete=Delete certificate
+
+cert_renew_desc=Renew a certificate (or more precisely, certificate lineages), if they are close to expiry.
+cert_tbl_renew=Renew a certificate lineage
+cert_no_directory_hooks=Disable running renewal hooks
+cert_no_renew_updates=Disable automatic updates to your server configuration
+cert_no_hook_validation=Disable hook validation
+
+cert_install_msg=Install certificate at one or more domains
+cert_revoke_msg=Revoke certificate
+cert_renew_msg=Renew a certificate lineage
+cert_test_msg=Analyze domain certificate at SSL Labs
+
+www_redirect=Automatically redirect all HTTP traffic to HTTPS for the newly authenticated vhost
+
+setup_title=Setup
+setup_register=Register
+register_desc=To be able to request new certificates you need to create a Certbot account. Its free and only takes a second.
+register_tbl_ttl=Register Let's Encrypt account
+
+hooks_title=Hooks
+hooks_desc=Hooks are shell scripts executed pre, post or at deploy time or a ceftificate.
+hooks_tab_edit=Edit
+hooks_tab_create=Create
+hooks_type=Type
+hooks_file=Filename
+hooks_efilename=Invalid filename
+hooks_esubdir=Invalid type. Choose between pre, post and deploy
+hook_create_ok=Create
+
+plugins_title=Plugins
+plugins_desc=Plugins used by certbot, that are available in your distribution. You can select and update multiple plugins.
+plugins_tbl_title=Plugins for Certbot
+plugins_ok=Update
+
+rsa-key-size=Size of the RSA key
+dry-run=Test "renew" or "certonly" without saving any certificates to disk
+max-log-backups=Specifies the maximum number of backup logs
+staging=Use the staging server to obtain or revoke test (invalid) certificates
+must-staple=Adds the OCSP Must Staple extension to the certificate
+agree-tos=Agree to the ACME server's Subscriber Agreement
+email=Email address for important account notifications
+no-eff-email=Don't share your e-mail address with EFF
+eff-email=Share your e-mail address with EFF
+disable-hook-validation=Disable checking of hook commands for validity
+no-directory-hooks=Disable running executables found in Certbot's hook directories
+no-autorenew=Disable auto renewal of certificates
+disable-renew-updates=Disable automatic updates to your server configuration that would otherwise be done by the selected installer plugin
