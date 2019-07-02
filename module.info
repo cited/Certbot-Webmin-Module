@@ -1,0 +1,4 @@
+desc=CertBot
+os_support=*-linux freebsd archlinux
+category=servers
+syslog=1
