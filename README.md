@@ -6,7 +6,8 @@ Copyright Cited, Inc. 2019
 # How to install
 Archive module
 
-	$ git clone 
+	$ git clone https://github.com/AcuGIS/certbot-webmin-module
+	$ mv certbot-webmin-module-master certbot
 	$ tar -cvzf certbot.wbm.gz certbot/
 
 Upload from Webmin->Webmin Configuration->Webmin Modules
