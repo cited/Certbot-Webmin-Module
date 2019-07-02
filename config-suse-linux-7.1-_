@@ -1,0 +1,2 @@
+certbot_config=/etc/webmin/certbot_config/config
+certbot_logdir=/var/log/letsencrypt
