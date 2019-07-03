@@ -1,5 +1,5 @@
 #!/usr/bin/perl
-# Show a page for manually editing an Tomcat server.xml config file
+# Show a page for manually editing an config file
 
 require './certbot-lib.pl';
 
