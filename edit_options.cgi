@@ -2,11 +2,28 @@
 
 require './certbot-lib.pl';
 
+sub get_certbot_logrotate(){
+	my $lref = &read_file_lines($config{'certbot_logrotate'});
+	foreach my $line (@$lref) {
+		if($line =~ /\s+rotate\s(\d+)$/){		#the rotate line
+			return $1;
+		}
+	}
+	return 0;
+}
+
 my %opts = get_certbot_options();
 my %opts_ini = ();
 read_file_cached('/etc/letsencrypt/cli.ini', \%opts_ini);
 
 &ui_print_header(undef, $text{'options_title'}, "");
+
+if( -f $config{'certbot_logrotate'}){	#if we have a logrotate file
+	$opts_ini{'max-log-backups'} = get_certbot_logrotate();
+	if(&indexof($opts_ini{'max-log-backups'}, $opts{'max-log-backups'}) < 0){	#if value is not in default values
+		push($opts{'max-log-backups'}, $opts_ini{'max-log-backups'});
+	}
+}
 
 #show options
 print &ui_form_start("save_options.cgi", "post");

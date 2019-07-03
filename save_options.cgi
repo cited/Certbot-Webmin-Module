@@ -2,6 +2,24 @@
 
 require './certbot-lib.pl';
 
+sub update_certbot_logrotate{
+	my $rotate_val = $_[0];
+
+	my $lref = &read_file_lines($config{'certbot_logrotate'});
+	my $lnum = 0;
+
+	foreach my $line (@$lref) {
+		if($line =~ /rotate /){		#the rotate line
+
+			@{$lref}[$lnum] = "\trotate ". $rotate_val;
+			flush_file_lines($config{'certbot_logrotate'});
+
+			last;
+		}
+		$lnum++;
+	}
+}
+
 &ReadParse();
 
 my %opts = get_certbot_options();
@@ -20,8 +38,13 @@ foreach my $key (keys %opts){	#for each option
 
 		if(	($opts{$key}[0] eq 'textbox')	 ||									#if option is entered by user
 				(&indexof($in{$html_key}, @{$opts{$key}}) >= 0)){	#if value is in allowed values
-			$opts_ini{$key} = $in{$html_key};	#save value
-			$flag_changed = 1;
+
+			if(($key eq 'max-log-backups') && -f $config{'certbot_logrotate'}){	#if we have a logrotate file
+				update_certbot_logrotate($in{$html_key});												#save --max-log-backups value there
+			}else{
+				$opts_ini{$key} = $in{$html_key};	#save value
+				$flag_changed = 1;
+			}
 		}
 	}
 }

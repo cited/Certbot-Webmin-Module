@@ -13,6 +13,7 @@ my $certbot_etc = '/etc/letsencrypt';
 my @files = ($certbot_etc.'/cli.ini');
 &indexof($in{'file'}, @files) >= 0 || &error($text{'manual_efile'});
 $in{'data'} =~ s/\r//g;
+$in{'data'} =~ s/ = /=/g; #replace spaces in key = value
 $in{'data'} =~ /\S/ || &error($text{'manual_edata'});
 
 # Write to it

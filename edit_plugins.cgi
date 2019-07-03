@@ -118,40 +118,43 @@ sub update_packages{
 }
 
 &ui_print_header(undef, $text{'plugins_title'}, "", "intro", 1, 1);
-print $text{'plugins_desc'};
+
 &ReadParse();
+my $post_flag = $in{'post_flag'} || 0;
+
+print $text{'plugins_desc'};
 
 my %pkgs = get_plugin_pkgs();
 my %pkgs_installed;
 
 my %osinfo = &webmin::detect_operating_system();
 if( $osinfo{'os_type'} =~ /redhat/i){	#other redhat
-
 		%pkgs_installed = get_packages_installed_yum(\%pkgs);
 
 }elsif( $osinfo{'os_type'} =~ /debian/i){
-
 		%pkgs_installed = get_packages_installed_apt(\%pkgs);
 }
 
-#find what was changed
-my @pkgs_remove;
-my $pkgs_install="";
-foreach my $pkg (sort keys %pkgs_installed){
-	if($in{$pkg.'_status'} != $pkgs_installed{$pkg}){
-		if($in{$pkg.'_status'} == 1){
-			$pkgs_install .= "$pkg ";
-		}elsif($in{$pkg.'_status'}){
-			push(@pkgs_remove, $pkg);
+if ($post_flag) {
+	#find what was changed
+	my @pkgs_remove;
+	my $pkgs_install="";
+	foreach my $pkg (sort keys %pkgs_installed){
+		if($in{$pkg.'_status'} != $pkgs_installed{$pkg}){
+			if($in{$pkg.'_status'} == 1){
+				$pkgs_install .= "$pkg ";
+			}elsif($in{$pkg.'_status'} == 0){
+				push(@pkgs_remove, $pkg);
+			}
 		}
 	}
-}
 
-#Check what is updated
-if ($pkgs_install or @pkgs_remove) {	#if pkgs were edited
-	update_packages($pkgs_install, \@pkgs_remove);
+	if ($pkgs_install or @pkgs_remove) {	#if pkgs were edited
+		update_packages($pkgs_install, \@pkgs_remove);
+	}
 }else{
 	print &ui_form_start("edit_plugins.cgi", "post");
+	print &ui_hidden("post_flag", 1);
 
 	my @tds = ();
 	print &ui_columns_start([	'<b>Name</b>','<b>Installed?</b>','<b>Description</b>'], undef, 0, \@tds, $text{'plugins_tbl_title'});
@@ -168,5 +171,4 @@ if ($pkgs_install or @pkgs_remove) {	#if pkgs were edited
 	print &ui_columns_end();
 	print &ui_form_end([ [ "", $text{'plugins_ok'} ] ]);
 }
-
 &ui_print_footer("", $text{'index_return'});

@@ -39,7 +39,11 @@ print &ui_table_start($text{'cert_tbl_info'}, "width=100%", 2);
 	my %vconf = find_cert_usedin($href);
 	my @cert_vconf = ();
 	foreach my $vidx (sort keys %vconf){
-		push(@cert_vconf, "<a href=/apache/manual_form.cgi?virt=$vidx>".$vconf{$vidx}."</a>");
+		if($vconf{$vidx} =~ m/nginx/){
+			push(@cert_vconf, $vconf{$vidx});
+		}else{
+			push(@cert_vconf, "<a href=/apache/manual_form.cgi?virt=$vidx>".$vconf{$vidx}."</a>");
+		}
 	}
 	print &ui_table_row($text{'cert_usedin'}, join("<br>", @cert_vconf), 2);
 

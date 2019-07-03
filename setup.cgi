@@ -11,13 +11,27 @@ foreign_require('apache', 'apache-lib.pl');
 
 sub setup_checks{
 
-	#check for GeoServer Apache config
+	my $www_type = '';
+	if(&has_command('apache2') || &has_command('httpd')){
+		$www_type = 'apache';
+	}elsif(&has_command('nginx')){
+		$www_type = 'nginx';
+	}else{
+		print "Warning: No webserver detected!";
+	}
+
 	my @pkg_names;
 	my %osinfo = webmin::detect_operating_system();
-	if(	( $osinfo{'real_os_type'} =~ /centos/i) or	#CentOS
-		($osinfo{'real_os_type'} =~ /fedora/i)	or  #Fedora
-		($osinfo{'real_os_type'} =~ /scientific/i)	){
-			@pkg_names = ('certbot', 'mod_ssl', 'openssl', 'python2-certbot-apache');
+	if(	($osinfo{'real_os_type'} =~ /centos/i) or	#CentOS
+			($osinfo{'real_os_type'} =~ /fedora/i)	or  #Fedora
+			($osinfo{'real_os_type'} =~ /scientific/i)	){
+
+			@pkg_names = ('certbot', 'openssl');
+			if($www_type eq 'apache'){
+				push(@pkg_names, ('mod_ssl', 'python2-certbot-apache'));
+			}elsif($www_type eq 'nginx'){
+				push(@pkg_names, 'python2-certbot-nginx');
+			}
 
 			if( $osinfo{'real_os_type'} =~ /centos/i){	#CentOS
 				@pinfo = software::package_info('epel-release', undef, );
@@ -28,8 +42,14 @@ sub setup_checks{
 			}
 
 	}elsif( ($osinfo{'real_os_type'} =~ /ubuntu/i) or
-			($osinfo{'real_os_type'} =~ /debian/i) 	){	#ubuntu or debian
-			@pkg_names = ('letsencrypt', 'python-certbot-apache');
+					($osinfo{'real_os_type'} =~ /debian/i) 	){	#ubuntu or debian
+
+			@pkg_names = ('letsencrypt');
+			if($www_type eq 'apache'){
+				push(@pkg_names, 'python-certbot-apache');
+			}elsif($www_type eq 'nginx'){
+				push(@pkg_names, 'python-certbot-nginx');
+			}
 
 			#add Certbot repo
 			my %lsb_rel;
@@ -62,19 +82,13 @@ sub setup_checks{
 
 	#enable SSL in apache
 	if( ($osinfo{'real_os_type'} =~ /ubuntu/i) or
-					($osinfo{'real_os_type'} =~ /debian/i) 	){	#ubuntu or debian
+			($osinfo{'real_os_type'} =~ /debian/i) 	){	#ubuntu or debian
 
-		if(! -f '/etc/apache2/mods-enabled/ssl.load'){
-			&execute_command('a2enmod ssl');
-		}
-
-		if(! -f '/etc/apache2/sites-enabled/default-ssl.conf'){
-			&execute_command('a2ensite default-ssl');
-			print "Apache SSL configuration updated. Restarting...<br>";
-			my $err = apache::restart_apache();
-			if($err){
-				print "Apache restart failed!: $err<br>";
-			}
+		if(	($www_type eq 'apache') &&
+				((! -f '/etc/apache2/mods-enabled/ssl.load') ||
+				(! -f '/etc/apache2/sites-enabled/default-ssl.conf')) ){
+			printf '<p>Info: Enable SSL module/site in Apache config '.
+						"<a href='setup.cgi?mode=enable_ssl&return=%2E%2E%2Fcertbot%2F&returndesc=Certbot&caller=certbot'>here</a></p>";
 		}
 	}
 
@@ -85,6 +99,18 @@ sub setup_checks{
 
 	print '<p>If you don\'t see any warning above, you can remove setup mode from '.
 		  "<a href='setup.cgi?mode=cleanup&return=%2E%2E%2Fcertbot%2F&returndesc=Certbot&caller=certbot'>here</a></p>";
+}
+
+sub apache_enable_ssl(){
+
+	&execute_command('a2enmod ssl');
+	&execute_command('a2ensite default-ssl');
+
+	print "Apache SSL configuration updated. Restarting...<br>";
+	my $err = apache::restart_apache();
+	if($err){
+		print "Apache restart failed!: $err<br>";
+	}
 }
 
 sub register_form(){
@@ -158,13 +184,15 @@ sub setup_cleanup{
 
 my $mode = $in{'mode'} || "checks";
 
-if($mode eq "checks"){			setup_checks();		&ui_print_footer('', $text{'index_return'});	exit 0;
-}elsif($mode eq "certbot"){	setup_certbot();	&ui_print_footer('', $text{'index_return'});	exit 0;
-}elsif($mode eq "register_form"){			register_form();		&ui_print_footer('', $text{'index_return'});	exit 0;
-}elsif($mode eq "register_account"){	register_account();	&ui_print_footer('', $text{'index_return'});	exit 0;
-}elsif($mode eq "cleanup"){	setup_cleanup();	&ui_print_footer('', $text{'index_return'});	exit 0;
+		if($mode eq "checks"){						setup_checks();
+}elsif($mode eq "certbot"){						setup_certbot();
+}elsif($mode eq "register_form"){			register_form();
+}elsif($mode eq "register_account"){	register_account();
+}elsif($mode eq "enable_ssl"){				apache_enable_ssl();
+}elsif($mode eq "cleanup"){						setup_cleanup();
 }else{
 	print "Error: Invalid setup mode\n";
+	&ui_print_footer('setup.cgi', $text{'setup_title'});
 }
 
-&ui_print_footer('setup.cgi', $text{'setup_title'});
+&ui_print_footer('', $text{'index_return'});

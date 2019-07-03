@@ -28,16 +28,6 @@ Upload from Webmin->Webmin Configuration->Webmin Modules
 
 Go to Servers-> Certbott (you may need to refresh page)
 
-# Notes
-
-# Authenticated theme Issues
-	- save_cfg.cgi - redirect() hides the Webmin menu!
-
-#TODO
-- Shadow max-log-backups in 'CLI Options', if wehave a logrotate.d certbot file
-- Options in cli.ini with spaces (var = value), are not respected from our editor!
-- Add Nginx plugins for CertBot in setup.cgi
-
 # Additional
 - CentOS has more Certbot plugins
 - Apache vconf is not updated, after deleting a certificate!
