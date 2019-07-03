@@ -1,1 +1,3 @@
 certbot_config=Path to the Webmin module config file,8
+certbot_logdir=Directory for logs,7
+certbot_logrotate=Path to certbot lograte file

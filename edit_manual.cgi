@@ -23,6 +23,7 @@ print &ui_form_end();
 print &ui_form_start("save_manual.cgi", "form-data");
 print &ui_hidden("file", $in{'file'}),"\n";
 $data = &read_file_contents($in{'file'});
+$data =~ s/ = /=/g; #replace spaces in key = value
 print &ui_textarea("data", $data, 20, 80),"\n";
 print &ui_form_end([ [ "save", $text{'save'} ] ]);
 

@@ -69,7 +69,7 @@ sub get_certbot_options(){
   #Default option must be first in array!
   my %opts = ('rsa-key-size'	=> ['2048','4096'],
   						'dry-run'				=> ['true', 'false'],
-              'max-log-backups' => ['1000', '0', '10', '20', '50', '100'],
+              'max-log-backups' => ['0', '10', '20', '50', '100'],
               'staging'         => ['false', 'true'],
               'must-staple'     => ['false', 'true'],
               'agree-tos'       => ['false', 'true'],
@@ -140,34 +140,89 @@ sub get_certbot_certs_info(){
   return @rv;
 }
 
+sub find_cert_usedin_apache{
+  my $href = shift;
+  my %rv = ();
+
+  foreign_require('apache', 'apache-lib.pl');
+
+  my $conf = &apache::get_config();
+  my @virt = &apache::find_directive_struct("VirtualHost", $conf);
+
+  foreach $v (@virt) {  #for each virtual host
+    my $vm = $v->{'members'};
+    my $server_name = &apache::find_directive("ServerName", $vm);
+    if( ($server_name eq $href->{'name'}) ||
+        ($server_name eq $href->{'name'}.':443')   ){ #if its our vhost
+      my $vm_cert_file = &apache::find_directive("SSLCertificateKeyFile", $vm);
+      if($vm_cert_file eq $href->{'key_path'}){  #if its our cert file
+
+        my $virt_idx = &indexof($v, @$conf);
+        my ($vmembers, $vconf) = &apache::get_virtual_config($virt_idx);
+
+        $rv{$virt_idx} = $vconf->{'file'}; #certificate is installed
+      }
+    }
+  }
+  return %rv;
+}
+
+sub get_nginx_configs(){
+  my @nginx_dirs = ('/etc/nginx', '/etc/nginx/conf.d', '/etc/nginx/default.d');
+  my @configs = ();
+
+  foreach $d (@nginx_dirs){
+    opendir(DIR, $d) or die $!;
+    my @d_conf = grep {	$_ = "$d/$_"; -f && m/\.conf$/i  } readdir(DIR);
+    closedir(DIR);
+    push(@configs, @d_conf);
+  }
+
+  return sort @configs;
+}
+
+sub file_find_pattern{
+  my $filepath = $_[0];
+  my $pattern  = $_[1];
+
+  my $lref = &read_file_lines($filepath);
+	foreach my $line (@$lref) {
+		if($line =~ m/$pattern/){		#the line matches
+      return 1;
+		}
+	}
+  return 0;
+}
+
+sub find_cert_usedin_nginx{
+  my $href = shift;
+  my $pattern = 'ssl_certificate\s+'.$href->{'cert_path'};
+  my %rv = ();
+
+  $virt_idx = 0;
+  foreach $filepath (get_nginx_configs()) {  #for each config
+
+    if(file_find_pattern($filepath, $href->{'cert_path'}) == 1){
+      $rv{$virt_idx} = $filepath;
+      $virt_idx++;
+    }
+  }
+  return %rv;
+}
+
+
 sub find_cert_usedin(){
   my $href = shift;
   my %rv = ();
 
-  #TODO: support for other webservers!
   #check which certificates are installed
-  if(foreign_installed('apache', 1) == 2){  #if apache is installed and configured
-    foreign_require('apache', 'apache-lib.pl');
-    my $conf = &apache::get_config();
-    my @virt = &apache::find_directive_struct("VirtualHost", $conf);
+  if(&has_command('apache2') or  &has_command('httpd')){  #if apache is installed and configured
+    return find_cert_usedin_apache($href);
 
-
-    foreach $v (@virt) {  #for each virtual host
-      my $vm = $v->{'members'};
-      my $server_name = &apache::find_directive("ServerName", $vm);
-      if( ($server_name eq $href->{'name'}) ||
-          ($server_name eq $href->{'name'}.':443')   ){ #if its our vhost
-        my $vm_cert_file = &apache::find_directive("SSLCertificateKeyFile", $vm);
-        if($vm_cert_file eq $href->{'key_path'}){  #if its our cert file
-
-          my $virt_idx = &indexof($v, @$conf);
-          my ($vmembers, $vconf) = &apache::get_virtual_config($virt_idx);
-
-          $rv{$virt_idx} = $vconf->{'file'}; #certificate is installed
-        }
-      }
-    }
+  }elsif(&has_command('nginx')){  #if apache is installed and configured
+    return find_cert_usedin_nginx($href);
   }
+
   return %rv;
 }
 

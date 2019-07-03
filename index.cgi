@@ -13,9 +13,7 @@ if (! -r $config{'certbot_config'}) {
 }
 
 if(-f "$module_root_directory/setup.cgi"){
-	&ui_print_header(undef, $text{'index_title'}, "", "intro", 1, 1);
-		print '<p>Setup software for module from <a href=\'./setup.cgi?mode=checks\'>here</a>';
-	&ui_print_footer("/", $text{"index"});
+	&redirect("setup.cgi?mode=checks");
 	exit;
 }
 
