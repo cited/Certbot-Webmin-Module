@@ -2,7 +2,7 @@
 # Certbot Webmin Module
 
 # Info
-Certbot Module for Webmin.  Install and manage SSL certificates via Certbot.
+Certbot Module for Webmin.  Install and manage SSL certificates and Certbot plugins via Webmin.
 
 # How to install via CDN
 
