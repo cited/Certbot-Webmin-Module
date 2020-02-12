@@ -179,6 +179,7 @@ sub setup_cleanup{
 	my $file = $module_root_directory.'/setup.cgi';
 	print "Completing installation\n";
 	&unlink_file($file);
+	print &js_redirect("index.cgi");
 }
 
 
