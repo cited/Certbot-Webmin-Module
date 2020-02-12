@@ -2,7 +2,23 @@
 
 require './certbot-lib.pl';
 
+sub add_certbot_logrotate(){
+	open($fh, $config{'certbot_logrotate'}) or die $!;
+	print $fh "/var/log/letsencrypt/*.log {\n";
+  print $fh "rotate 12\n";
+  print $fh "weekly\n";
+  print $fh "compress\n";
+  print $fh "missingok\n";
+	print $fh "}\n";
+  close($fh);
+}
+
 sub get_certbot_logrotate(){
+
+	if(! -f $config{'certbot_logrotate'}){
+		add_certbot_logrotate();
+	}
+
 	my $lref = &read_file_lines($config{'certbot_logrotate'});
 	foreach my $line (@$lref) {
 		if($line =~ /\s+rotate\s(\d+)$/){		#the rotate line
