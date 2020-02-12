@@ -3,21 +3,17 @@
 require './certbot-lib.pl';
 
 sub add_certbot_logrotate(){
-	open($fh, $config{'certbot_logrotate'}) or die $!;
+	open($fh, '>'.$config{'certbot_logrotate'}) or die $!;
 	print $fh "/var/log/letsencrypt/*.log {\n";
-  print $fh "rotate 12\n";
-  print $fh "weekly\n";
-  print $fh "compress\n";
-  print $fh "missingok\n";
+  print $fh "\trotate 12\n";
+  print $fh "\tweekly\n";
+  print $fh "\tcompress\n";
+  print $fh "\tmissingok\n";
 	print $fh "}\n";
   close($fh);
 }
 
 sub get_certbot_logrotate(){
-
-	if(! -f $config{'certbot_logrotate'}){
-		add_certbot_logrotate();
-	}
 
 	my $lref = &read_file_lines($config{'certbot_logrotate'});
 	foreach my $line (@$lref) {
@@ -34,12 +30,15 @@ read_file_cached('/etc/letsencrypt/cli.ini', \%opts_ini);
 
 &ui_print_header(undef, $text{'options_title'}, "");
 
-if( -f $config{'certbot_logrotate'}){	#if we have a logrotate file
-	$opts_ini{'max-log-backups'} = get_certbot_logrotate();
-	if(&indexof($opts_ini{'max-log-backups'}, $opts{'max-log-backups'}) < 0){	#if value is not in default values
-		push(@{%opts{'max-log-backups'}}, $opts_ini{'max-log-backups'});
-	}
+if(! -f $config{'certbot_logrotate'}){	#if we have a logrotate file
+	add_certbot_logrotate();
 }
+
+$opts_ini{'max-log-backups'} = get_certbot_logrotate();
+if(&indexof($opts_ini{'max-log-backups'}, $opts{'max-log-backups'}) < 0){	#if value is not in default values
+	push(@{%opts{'max-log-backups'}}, $opts_ini{'max-log-backups'});
+}
+
 
 #show options
 print &ui_form_start("save_options.cgi", "post");
