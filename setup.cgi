@@ -27,10 +27,14 @@ sub setup_checks{
 			($osinfo{'real_os_type'} =~ /scientific/i)	){
 
 			@pkg_names = ('certbot', 'openssl');
-			if($www_type eq 'apache'){
-				push(@pkg_names, ('mod_ssl', 'python2-certbot-apache'));
-			}elsif($www_type eq 'nginx'){
-				push(@pkg_names, 'python2-certbot-nginx');
+			if($osinfo{'real_os_version'} =~ /^8/){
+				push(@pkg_names, ('mod_ssl', 'python3-certbot'));
+			}else{
+				if($www_type eq 'apache'){
+					push(@pkg_names, ('mod_ssl', 'python2-certbot-apache'));
+				}elsif($www_type eq 'nginx'){
+					push(@pkg_names, 'python2-certbot-nginx');
+				}
 			}
 
 			if( $osinfo{'real_os_type'} =~ /centos/i){	#CentOS
@@ -173,8 +177,9 @@ sub setup_certbot(){
 #Remove all setup files
 sub setup_cleanup{
 	my $file = $module_root_directory.'/setup.cgi';
-	print "Completing installation\n";
+	print "Completing installation.</br>";
 	&unlink_file($file);
+	print &js_redirect("index.cgi");
 }
 
 
