@@ -37,7 +37,7 @@ read_file_cached('/etc/letsencrypt/cli.ini', \%opts_ini);
 if( -f $config{'certbot_logrotate'}){	#if we have a logrotate file
 	$opts_ini{'max-log-backups'} = get_certbot_logrotate();
 	if(&indexof($opts_ini{'max-log-backups'}, $opts{'max-log-backups'}) < 0){	#if value is not in default values
-		push($opts{'max-log-backups'}, $opts_ini{'max-log-backups'});
+		push(@{%opts{'max-log-backups'}}, $opts_ini{'max-log-backups'});
 	}
 }
 
