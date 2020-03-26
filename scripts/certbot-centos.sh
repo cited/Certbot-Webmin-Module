@@ -1,7 +1,7 @@
 #!/bin/bash -e
 # Certbot Module Installation Script
 # Usage: 
-# wget 
+# wget https://raw.githubusercontent.com/cited/Certbot-Webmin-Module/master/scripts/certbot-centos.sh
 # chmod +x certbot-centos.sh
 # ./certbot-centos.sh
 
