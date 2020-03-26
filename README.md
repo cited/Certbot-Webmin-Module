@@ -8,19 +8,25 @@ Certbot Module for Webmin.  Install and manage SSL certificates and Certbot plug
 
 Ubuntu:
 
+```console
+
 wget https://raw.githubusercontent.com/cited/Certbot-Webmin-Module/master/scripts/certbot-ubuntu.sh
 
 chmod +x certbot-ubuntu.sh
 
 ./certbot-ubuntu.sh
+```
 
 CentOS:
 
+```console
 wget https://raw.githubusercontent.com/cited/Certbot-Webmin-Module/master/scripts/certbot-ubuntu.sh
 
 chmod +x certbot-ubuntu.sh
 
 ./certbot-ubuntu.sh
+
+```
 
 When script completes. go to Servers-> Certbot to complete installation.
 
