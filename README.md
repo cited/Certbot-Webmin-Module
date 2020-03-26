@@ -8,7 +8,7 @@ Certbot Module for Webmin.  Install and manage SSL certificates and Certbot plug
 
 Ubuntu:
 
-```console
+```bash
 
 wget https://raw.githubusercontent.com/cited/Certbot-Webmin-Module/master/scripts/certbot-ubuntu.sh
 
@@ -19,7 +19,7 @@ chmod +x certbot-ubuntu.sh
 
 CentOS:
 
-```console
+```bash
 wget https://raw.githubusercontent.com/cited/Certbot-Webmin-Module/master/scripts/certbot-ubuntu.sh
 
 chmod +x certbot-ubuntu.sh
