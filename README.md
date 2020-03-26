@@ -4,20 +4,30 @@
 # Info
 Certbot Module for Webmin.  Install and manage SSL certificates and Certbot plugins via Webmin.
 
-# How to install via CDN
+# Install via Script
 
-Webmin->Webmin Configuration->Webmin Modules->From ftp or http URL
+Ubuntu:
 
-URL: https://cdn.acugis.com/certbot-webmin-module/certbot.wbm.gz
+wget https://raw.githubusercontent.com/cited/Certbot-Webmin-Module/master/scripts/certbot-ubuntu.sh
 
-md5: https://cdn.acugis.com/certbot-webmin-module/certbot.txt
+chmod +x certbot-ubuntu.sh
 
-Go to Servers-> Certbot (you may need to refresh page)
+./certbot-ubuntu.sh
+
+CentOS:
+
+wget https://raw.githubusercontent.com/cited/Certbot-Webmin-Module/master/scripts/certbot-ubuntu.sh
+
+chmod +x certbot-ubuntu.sh
+
+./certbot-ubuntu.sh
+
+When script completes. go to Servers-> Certbot to complete installation.
 
 # How to install from GIT
 Archive module
 
-$ git clone https://github.com/AcuGIS/Certbot-Webmin-Module
+$ git clone https://github.com/cited/Certbot-Webmin-Module
 
 $ mv Certbot-Webmin-Module certbot
 
@@ -42,5 +52,5 @@ Please report issue here or at hello@acugis.com
 Copyright
 ---------
 
-* Copyright AcuGIS, 2019
-* Copyright Cited, Inc., 2019
+* Copyright AcuGIS, 2020
+* Copyright Cited, Inc., 2020
