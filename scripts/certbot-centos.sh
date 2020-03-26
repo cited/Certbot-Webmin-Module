@@ -7,7 +7,7 @@
 
 function download_certbot_module(){
 	pushd /tmp/
-	wget https://github.com/AcuGIS/Certbot-Webmin-Module/archive/master.zip
+	wget https://github.com/cited/Certbot-Webmin-Module/archive/master.zip
 	unzip master.zip
 	mv Certbot-Webmin-Module-master certbot
 	tar -czf /opt/certbot.wbm.gz certbot
