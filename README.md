@@ -20,11 +20,11 @@ chmod +x certbot-ubuntu.sh
 CentOS:
 
 ```bash
-wget https://raw.githubusercontent.com/cited/Certbot-Webmin-Module/master/scripts/certbot-ubuntu.sh
+wget https://raw.githubusercontent.com/cited/Certbot-Webmin-Module/master/scripts/certbot-centos.sh
 
-chmod +x certbot-ubuntu.sh
+chmod +x certbot-centos.sh
 
-./certbot-ubuntu.sh
+./certbot-centos.sh
 
 ```
 
