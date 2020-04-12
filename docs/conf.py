@@ -12,12 +12,12 @@ from sphinx.locale import _
 from sphinx_rtd_theme import __version__
 
 
-project = u'Nagios Webmin Module'
-copyright = u'2020 Cited Inc.'
+project = u'AcuGIS GeoHelm'
+copyright = u'2020, Cited, Inc.'
 slug = re.sub(r'\W+', '-', project.lower())
 version = __version__
 release = __version__
-author = u'Cited, Inc'
+author = u'acugis'
 copyright = author
 language = 'en'
 
@@ -51,7 +51,7 @@ html_theme_options = {
     'display_version': True
 }
 html_theme_path = ["_themes", ]
-#html_logo = "_static/geohelm-logo-small.png"
+html_logo = "_static/geohelm-logo-small.png"
 html_show_sourcelink = True
 
 htmlhelp_basename = slug

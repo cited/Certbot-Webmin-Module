@@ -4,20 +4,22 @@ Intro
 Overview
 ------------
 
-The Nagios Webmin Module that allows you to install and manage Nagios Core.
+GeoHelm is a Webmin Module that allows you to build a full Open Source GIS stack quickly and easily.
 
-The UI panel allows you start and stop Nagios and Nrpe, as well as edit and create cfg files
+GeoHelm installs and configures PostgreSQL, PostGIS, GeoServer (optionally), Tomcat, and JDK.
 
-The moudle has been tested on CentOS 7 and Ubuntu 18.
+It includes a panel for managing all aspects of the service.
+
+GeoHelm can be installed on CentOS 7 or Ubuntu 18.
 
 All installed components are non-forked and un-modified and installed via the projects archive.
 
-.. image:: _static/nagios-main.png
+.. image:: _static/geohelm-header.png
 
 
 System Requirements
 -------------------
-* CentOS 8 or 
+* CentOS 7 or 
 * Ubuntu 18
 * Webmin
 * 1 GB Ram
@@ -36,22 +38,32 @@ Authors
 Components
 ----------
 
-`Nagios Core`_
+`PostgreSQL`_
 
-.. _`Nagios Core`: https://www.nagios.org/projects/nagios-core/ 
+.. _`PostgreSQL`: https://www.opal-consulting.de/downloads/free_tools/JasperReportsIntegration/ 
 
-`Nagios Remote Plugin Executor`_
+`PostGIS`_
 
-.. _`Nagios Remote Plugin Executor`: https://exchange.nagios.org/directory/Addons/Monitoring-Agents/NRPE--2D-Nagios-Remote-Plugin-Executor/details 
+.. _`PostGIS`: https://community.jaspersoft.com/project/jasperreports-library 
 
 `Apache Tomcat`_
 
 .. _`Apache Tomcat`: http://tomcat.apache.org/ 
 
+`OpenJDK`_
+
+.. _`OpenJDK`: https://openjdk.java.net/
+
+`GeoServer`_
+
+.. _`GeoServer`: https://openjdk.java.net/
+ 
+
+
 Open Source
 -----------
 
-This module is Free, Open Source Software.
+GeoHelm is Free, Open Source Software.
 
 GNU GENERAL PUBLIC LICENSE v3
 

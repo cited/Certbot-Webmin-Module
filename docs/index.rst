@@ -1,4 +1,4 @@
-Nagios Module
+GeoHelm
 ==================================================
 
 .. include:: ../README.rst
@@ -11,36 +11,49 @@ Nagios Module
    installing
    wizard
    webmin
-   access
    
 .. toctree::
     :maxdepth: 3
-    :caption: Editors
+    :caption: Components
 
-    editors/nagios/nagiosconfs
-    editors/objects/objectconfs
-
+    components/general/index
+    components/tomcat/index
+    components/postgresql/index
+    components/postgis/index
+    components/pgrouting/index
+    components/geoserver/index
+    components/shp2pgsql/index
     
 .. toctree::
     :maxdepth: 2
-    :caption: Services
+    :caption: Web Apps
 
-    services/nagios/index
-    services/nrpe/index
+    webapps/homepage
+    webapps/openlayers
+    webapps/leafletjs
     
     
 .. toctree::
     :maxdepth: 2
-    :caption: Nrpe Agent
+    :caption: Scripts
+
+    scripts/cors
+    scripts/csrf
+    scripts/securedeb
+    scripts/securerhel
     
-    client/nrpe/index
+    
+    
+
 
 .. toctree::
     :maxdepth: 2
     :caption: Resources
 
-    resources/nagios
+    resources/css
+    resources/security
     resources/support
+    resources/commercial
     resources/license
     
     
