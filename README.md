@@ -4,6 +4,15 @@
 # Info
 Certbot Module for Webmin.  Install and manage SSL certificates and Certbot plugins via Webmin.
 
+# Quick Install
+
+1. Log into Webmin
+2. Go to Webmin Configuration > Webmin Modules
+3. Select "From HTTP or FTP Url"
+4. Enter https://github.com/cited/Certbot-Webmin-Module/blob/master/scripts/certbot.wbm.gz?raw=true
+5. Click the Install button.
+
+
 # Install via Script
 
 As Root:
