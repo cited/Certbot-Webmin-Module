@@ -24,7 +24,7 @@ Archive module
 
 $ git clone https://github.com/cited/Certbot-Webmin-Module
 
-$ mv Certbot-Webmin-Module certbot
+$ mv Certbot-Webmin-Module-master certbot
 
 $ tar -cvzf certbot.wbm.gz certbot/
 
