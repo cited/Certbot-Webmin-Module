@@ -17,7 +17,22 @@ sub setup_checks{
 	}elsif(&has_command('nginx')){
 		$www_type = 'nginx';
 	}else{
-		print "Warning: No webserver detected!";
+		print "<p>Warning: No webserver detected!";
+		my $nginx_pkg = 'nginx';
+		my $apache_pkg = 'apache2';
+
+		if(	($osinfo{'real_os_type'} =~ /centos/i) or	#CentOS
+				($osinfo{'real_os_type'} =~ /fedora/i)	or  #Fedora
+				($osinfo{'real_os_type'} =~ /scientific/i)	){
+			$apache_pkg = 'httpd';
+		}elsif( ($osinfo{'real_os_type'} =~ /ubuntu/i) or
+						($osinfo{'real_os_type'} =~ /debian/i) 	){	#ubuntu or debian
+			$apache_pkg = 'apache2';
+		}
+		print " Install either ".
+				"<a href='../package-updates/update.cgi?mode=new&source=3&u=".&urlize($nginx_pkg)."&redir=%2E%2E%2Fcertbot%2Fsetup.cgi&redirdesc=Certbot Setup'>NGINX</a> or ".
+				"<a href='../package-updates/update.cgi?mode=new&source=3&u=".&urlize($apache_pkg)."&redir=%2E%2E%2Fcertbot%2Fsetup.cgi&redirdesc=Certbot Setup'>Apache</a></p>";
+		return;
 	}
 
 	my @pkg_names;
@@ -48,19 +63,29 @@ sub setup_checks{
 	}elsif( ($osinfo{'real_os_type'} =~ /ubuntu/i) or
 					($osinfo{'real_os_type'} =~ /debian/i) 	){	#ubuntu or debian
 
-			@pkg_names = ('letsencrypt');
+			@pkg_names = ();
 			if($www_type eq 'apache'){
-				push(@pkg_names, 'python-certbot-apache');
+				if($osinfo{'real_os_version'} =~ /^20/){
+					push(@pkg_names, 'python3-certbot-apache', 'certbot');
+				}else{
+					push(@pkg_names, 'python-certbot-apache', 'letsencrypt');
+				}
 			}elsif($www_type eq 'nginx'){
-				push(@pkg_names, 'python-certbot-nginx');
+				if($osinfo{'real_os_version'} =~ /^20/){
+					push(@pkg_names, 'python3-certbot-nginx', 'certbot');
+				}else{
+					push(@pkg_names, 'python-certbot-nginx', 'letsencrypt');
+				}
 			}
 
 			#add Certbot repo
-			my %lsb_rel;
-			read_env_file('/etc/lsb-release', \%lsb_rel);
-			if(! -f "/etc/apt/sources.list.d/certbot-ubuntu-certbot-$lsb_rel{'DISTRIB_CODENAME'}.list"){
-				print "<p>Warning: ppa:certbot/certbot is not installed. Install it manually or ".
-						"<a href='setup.cgi?mode=certbot&return=%2E%2E%2Fcertbot%2F&returndesc=Certbot&caller=certbot'>here</a></p>";
+			if($osinfo{'real_os_version'} !~ /^20/){
+				my %lsb_rel;
+				read_env_file('/etc/lsb-release', \%lsb_rel);
+				if(! -f "/etc/apt/sources.list.d/certbot-ubuntu-certbot-$lsb_rel{'DISTRIB_CODENAME'}.list"){
+					print "<p>Warning: ppa:certbot/certbot is not installed. Install it manually or ".
+							"<a href='setup.cgi?mode=certbot&return=%2E%2E%2Fcertbot%2F&returndesc=Certbot&caller=certbot'>here</a></p>";
+				}
 			}
 	}
 
