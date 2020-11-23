@@ -17,7 +17,22 @@ sub setup_checks{
 	}elsif(&has_command('nginx')){
 		$www_type = 'nginx';
 	}else{
-		print "Warning: No webserver detected!";
+		print "<p>Warning: No webserver detected!";
+		my $nginx_pkg = 'nginx';
+		my $apache_pkg = 'apache2';
+
+		if(	($osinfo{'real_os_type'} =~ /centos/i) or	#CentOS
+				($osinfo{'real_os_type'} =~ /fedora/i)	or  #Fedora
+				($osinfo{'real_os_type'} =~ /scientific/i)	){
+			$apache_pkg = 'httpd';
+		}elsif( ($osinfo{'real_os_type'} =~ /ubuntu/i) or
+						($osinfo{'real_os_type'} =~ /debian/i) 	){	#ubuntu or debian
+			$apache_pkg = 'apache2';
+		}
+		print " Install either ".
+				"<a href='../package-updates/update.cgi?mode=new&source=3&u=".&urlize($nginx_pkg)."&redir=%2E%2E%2Fcertbot%2Fsetup.cgi&redirdesc=Certbot Setup'>NGINX</a> or ".
+				"<a href='../package-updates/update.cgi?mode=new&source=3&u=".&urlize($apache_pkg)."&redir=%2E%2E%2Fcertbot%2Fsetup.cgi&redirdesc=Certbot Setup'>Apache</a></p>";
+		return;
 	}
 
 	my @pkg_names;
