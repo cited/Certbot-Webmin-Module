@@ -63,15 +63,17 @@ sub setup_checks{
 	}elsif( ($osinfo{'real_os_type'} =~ /ubuntu/i) or
 					($osinfo{'real_os_type'} =~ /debian/i) 	){	#ubuntu or debian
 
+			my $ubuntu_ver = substr($osinfo{'real_os_version'}, 0, index($osinfo{'real_os_version'}, "."));
+
 			@pkg_names = ();
 			if($www_type eq 'apache'){
-				if($osinfo{'real_os_version'} =~ /^20/){
+				if($ubuntu_ver >= 20){
 					push(@pkg_names, 'python3-certbot-apache', 'certbot');
 				}else{
 					push(@pkg_names, 'python-certbot-apache', 'letsencrypt');
 				}
 			}elsif($www_type eq 'nginx'){
-				if($osinfo{'real_os_version'} =~ /^20/){
+				if($ubuntu_ver >= 20){
 					push(@pkg_names, 'python3-certbot-nginx', 'certbot');
 				}else{
 					push(@pkg_names, 'python-certbot-nginx', 'letsencrypt');
@@ -79,7 +81,6 @@ sub setup_checks{
 			}
 
 			#add Certbot repo for Ubuntu below 20
-			my $ubuntu_ver = substr($osinfo{'real_os_version'}, 0, index($osinfo{'real_os_version'}, "."));
 			if($ubuntu_ver < 20){
 				my %lsb_rel;
 				read_env_file('/etc/lsb-release', \%lsb_rel);
