@@ -78,8 +78,9 @@ sub setup_checks{
 				}
 			}
 
-			#add Certbot repo
-			if($osinfo{'real_os_version'} !~ /^20/){
+			#add Certbot repo for Ubuntu below 20
+			my $ubuntu_ver = substr($osinfo{'real_os_version'}, 0, index($osinfo{'real_os_version'}, "."));
+			if($ubuntu_ver < 20){
 				my %lsb_rel;
 				read_env_file('/etc/lsb-release', \%lsb_rel);
 				if(! -f "/etc/apt/sources.list.d/certbot-ubuntu-certbot-$lsb_rel{'DISTRIB_CODENAME'}.list"){
