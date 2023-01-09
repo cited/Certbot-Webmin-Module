@@ -42,6 +42,18 @@ Upload from Webmin->Webmin Configuration->Webmin Modules
 
 Go to Servers-> Certbott (you may need to refresh page)
 
+# CLI
+
+You can add items to the cli.ini using below:
+
+1. Click on the Config icon:
+
+![config](https://user-images.githubusercontent.com/655540/210635536-59ff1641-5095-490b-b51f-a68874359ddf.jpg)
+
+2. Add the required line(s) to the cli.ini file.
+
+![cli](https://user-images.githubusercontent.com/655540/210635555-ac53987a-558f-479d-9460-010c8b18433a.jpg)
+
 # Additional
 - CentOS has more Certbot plugins
 - Apache vconf is not updated, after deleting a certificate!
