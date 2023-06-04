@@ -31,11 +31,15 @@ In this file, you can add/edit command line ini elements:
 .. code-block:: console
    :linenos:
 
-max-log-backups=0
-email=admin@domain.com
-no-eff-email=true
-agree-tos=true
+   max-log-backups=0
+   email=admin@domain.com
+   no-eff-email=true
+   agree-tos=true
 
 
 When you have completed your edits, click the "Save and Close" button.
+
+For more information on cli.ini, visit:
+https://eff-certbot.readthedocs.io/en/stable/using.html#configuration-file
+
 
