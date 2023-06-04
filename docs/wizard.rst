@@ -16,7 +16,7 @@ The steps are self-explanatory, accept each step until no warnings remain:
 
 Once each step of the Wizard is completed, the Wizard can be removed:
 
-.. image:: _static/19-donei.png
+.. image:: _static/certbot-complete.png
 
 
 With the Wizard completed, your module should appear as below:
