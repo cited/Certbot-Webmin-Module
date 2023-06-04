@@ -4,26 +4,22 @@ Intro
 Overview
 ------------
 
-GeoHelm is a Webmin Module that allows you to build a full Open Source GIS stack quickly and easily.
+The Certbot Webmin Module allows you to request, install, and manage Letsencrypt certificates.
 
-GeoHelm installs and configures PostgreSQL, PostGIS, GeoServer (optionally), Tomcat, and JDK.
-
-It includes a panel for managing all aspects of the service.
-
-GeoHelm can be installed on CentOS 7 or Ubuntu 18.
+It includes a panel for managing all aspects of Certbot.
 
 All installed components are non-forked and un-modified and installed via the projects archive.
 
-.. image:: _static/geohelm-header.png
+.. image:: certbot-Main.png
 
 
 System Requirements
 -------------------
-* CentOS 7 or 
-* Ubuntu 18
+* CentOS 7 or 8 
+* Ubuntu 18, 20, 22
 * Webmin
 * 1 GB Ram
-* 10 GB SSD
+* 1 GB SSD
 
 Authors
 -------
@@ -38,32 +34,20 @@ Authors
 Components
 ----------
 
-`PostgreSQL`_
+`Certbot`_
 
-.. _`PostgreSQL`: https://www.opal-consulting.de/downloads/free_tools/JasperReportsIntegration/ 
+.. _`Certbot`: https://certbot.eff.org/
 
-`PostGIS`_
+`LetsEncrypt`_
 
-.. _`PostGIS`: https://community.jaspersoft.com/project/jasperreports-library 
-
-`Apache Tomcat`_
-
-.. _`Apache Tomcat`: http://tomcat.apache.org/ 
-
-`OpenJDK`_
-
-.. _`OpenJDK`: https://openjdk.java.net/
-
-`GeoServer`_
-
-.. _`GeoServer`: https://openjdk.java.net/
+.. _`LetsEncrypt`: https://letsencrypt.org/
  
 
 
 Open Source
 -----------
 
-GeoHelm is Free, Open Source Software.
+This is Free, Open Source Software.
 
 GNU GENERAL PUBLIC LICENSE v3
 
