@@ -18,6 +18,7 @@ Once installed, the CertBot module will look as below:
 
 .. image:: certbot-Main.png
 
+Each menu items is covered in the Components section of the left menu.
 
 For the Impatient
 ====================
@@ -36,11 +37,11 @@ Enter the domain to be secure, the VHOST location and click "Request Certificate
 
 Return to the Certificates tab to get certifcate file locations as show below
 
-.. image:: certbot-request-4
+.. image:: certbot-request-4.png
 
 Add file locations to Apache as shown below:
 
-.. image:: certbot-request-5
+.. image:: certbot-request-5.png
 
   
 .. note::
