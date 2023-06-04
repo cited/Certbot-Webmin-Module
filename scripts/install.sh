@@ -62,7 +62,7 @@ pushd /opt/
 	if [ "${REPO}" == 'apt' ]; then
 	/usr/share/webmin/install-module.pl certbot.wbm.gz
         elif [ "${REPO}" == 'rpm' ]; then
-        /usr/share/webmin/install-module.pl certbot.wbm.gz
+        /usr/libexec/webmin/install-module.pl certbot.wbm.gz
         fi
 popd
         echo -e "Certbot is now installed. Go to Servers > Certbot to complete installation"
