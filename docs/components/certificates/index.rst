@@ -7,7 +7,7 @@
    :width: 1em
 
 **********************
-PostGIS
+Certificates
 **********************
 
 .. contents:: Table of Contents
