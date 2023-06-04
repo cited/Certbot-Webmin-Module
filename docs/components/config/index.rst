@@ -7,7 +7,7 @@
    :width: 1em
 
 **********************
-GeoServer
+Configuration
 **********************
 
 .. contents:: Table of Contents
