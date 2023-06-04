@@ -8,7 +8,7 @@
    :width: 1em
 
 **********************
-PostgreSQL
+Logs
 **********************
 
 .. contents:: Table of Contents
