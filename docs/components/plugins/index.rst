@@ -14,19 +14,18 @@ Plugins
 Access
 ==================
 
-You can access the CLI tab via Certbot > Edit Config
+You can access the Plugins tab via Certbot > Plugins
 
-.. image:: certbot-cli-tab.png
+.. image:: certbot-plugins-tab.png
 
-Editing
+Edit and Update
 ================== 
 
-The CLI form provides CLI options as show below:
+The Plugins form allows you to select, and de-select, certbot plugins as show below:
 
-.. image:: certbot-cli.png
+.. image:: certbot-plugins.png
 
-When you have completed your edits, click the "Save and Close" button.
+When you have completed your edits, click the "Update" button.
 
-For more information on Command Line options, visit:
-https://eff-certbot.readthedocs.io/en/stable/using.html#certbot-command-line-options
-
+For more information on Certbot Plugins, visit:
+https://eff-certbot.readthedocs.io/en/stable/using.html#getting-certificates-and-choosing-plugins
