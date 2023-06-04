@@ -7,7 +7,7 @@
    :width: 1em
 
 **********************
-Apache Tomcat
+Plugins
 **********************
 
 .. contents:: Table of Contents
