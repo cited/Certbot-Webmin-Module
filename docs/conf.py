@@ -51,7 +51,6 @@ html_theme_options = {
     'display_version': True
 }
 html_theme_path = ["_themes", ]
-html_logo = "_static/geohelm-logo-small.png"
 html_show_sourcelink = True
 
 htmlhelp_basename = slug
