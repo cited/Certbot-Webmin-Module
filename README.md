@@ -1,6 +1,8 @@
 
 # Certbot Webmin Module
 
+[![Documentation Status](https://readthedocs.org/projects/certbot-webmin-module/badge/?version=latest)](https://certbot.citedcorp.com/en/latest/?badge=latest)
+
 # Info
 Certbot Module for Webmin.  Install and manage SSL certificates and Certbot plugins via Webmin.
 
