@@ -14,19 +14,19 @@ Logs
 Access
 ==================
 
-You can access the CLI tab via Certbot > Edit Config
+You can access the Log file via Certbot > Logs
 
-.. image:: certbot-cli-tab.png
+.. image:: certbot-log-tab.png
 
-Editing
+Viewing
 ================== 
 
-The CLI form provides CLI options as show below:
+The log viewer provide a link to view the certbot.log file as shown below.
 
-.. image:: certbot-cli.png
+.. image:: certbot-log.png
 
-When you have completed your edits, click the "Save and Close" button.
+By default, only the first 100 lines are displayed.  You can alter this as needed.
 
-For more information on Command Line options, visit:
-https://eff-certbot.readthedocs.io/en/stable/using.html#certbot-command-line-options
+
+
 
