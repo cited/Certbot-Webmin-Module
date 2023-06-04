@@ -17,12 +17,12 @@ Certbot Module
     :caption: Components
 
     components/general/index
-    components/tomcat/index
-    components/postgresql/index
-    components/postgis/index
-    components/pgrouting/index
-    components/geoserver/index
-    components/shp2pgsql/index
+    components/config/index
+    components/cli/index
+    components/certificates/index
+    components/log/index
+    components/hooks/index
+    components/plugins/index
     
 .. toctree::
     :maxdepth: 2
