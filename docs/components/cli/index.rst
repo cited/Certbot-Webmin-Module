@@ -7,7 +7,7 @@
    :width: 1em
 
 **********************
-PgRouting
+CLI
 **********************
 
 .. contents:: Table of Contents
