@@ -21,11 +21,19 @@ Once installed, the CertBot module will look as below:
 
 For the Impatient
 ====================
-.. image:: _static/apps-tab.png
 
-To install an SSL certificate, click on Certificates > then click on Letsencrypt form
+To install an SSL certificate, click on Certificates
+
+.. image:: certbot-certificate-tab.png
+
+ Click on Letsencrypt form link:
+
+.. image:: certbot-letsencrypt.png
 
 Enter the domain to be secure, the VHOST location and click "Request Certificate"
+
+.. image:: certbot-form.png
+
 
    
 .. note::
