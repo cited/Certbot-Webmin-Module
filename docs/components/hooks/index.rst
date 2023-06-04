@@ -14,19 +14,18 @@ Hooks
 Access
 ==================
 
-You can access the CLI tab via Certbot > Edit Config
+You can access the Hooks tab via Certbot > Hooks
 
-.. image:: certbot-cli-tab.png
+.. image:: certbot-hook-tab.png
 
 Editing
 ================== 
 
-The CLI form provides CLI options as show below:
+The Hooks form allows you to add and edit Hooks
 
-.. image:: certbot-cli.png
+.. image:: certbot-hooks.png
 
-When you have completed your edits, click the "Save and Close" button.
+As shown above, Hooks can be added as pre or post validation hooks, as well as deploy.
 
-For more information on Command Line options, visit:
-https://eff-certbot.readthedocs.io/en/stable/using.html#certbot-command-line-options
-
+For more information on Hooks, visit:
+https://eff-certbot.readthedocs.io/en/stable/using.html#pre-and-post-validation-hooks
