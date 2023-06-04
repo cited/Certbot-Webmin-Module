@@ -26,7 +26,7 @@ To install an SSL certificate, click on Certificates
 
 .. image:: certbot-certificate-tab.png
 
- Click on Letsencrypt form link:
+Click on Letsencrypt form link:
 
 .. image:: certbot-letsencrypt.png
 
@@ -34,8 +34,15 @@ Enter the domain to be secure, the VHOST location and click "Request Certificate
 
 .. image:: certbot-form.png
 
+Return to the Certificates tab to get certifcate file locations as show below
 
-   
+.. image:: certbot-request-4
+
+Add file locations to Apache as shown below:
+
+.. image:: certbot-request-5
+
+  
 .. note::
     LetsEncrypt limits the number of requests per IP.  If you get an error, be sure to examine logs before making additional requests
 
