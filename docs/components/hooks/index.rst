@@ -16,7 +16,7 @@ Access
 
 You can access the Hooks tab via Certbot > Hooks
 
-.. image:: certbot-hook-tab.png
+.. image:: certbot-hooks-tab.png
 
 Editing
 ================== 
