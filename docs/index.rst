@@ -24,34 +24,12 @@ Certbot Module
     components/hooks/index
     components/plugins/index
     
-.. toctree::
-    :maxdepth: 2
-    :caption: Web Apps
 
-    webapps/homepage
-    webapps/openlayers
-    webapps/leafletjs
     
-    
-.. toctree::
-    :maxdepth: 2
-    :caption: Scripts
-
-    scripts/cors
-    scripts/csrf
-    scripts/securedeb
-    scripts/securerhel
-    
-    
-    
-
-
 .. toctree::
     :maxdepth: 2
     :caption: Resources
 
-    resources/css
-    resources/security
     resources/support
     resources/commercial
     resources/license
