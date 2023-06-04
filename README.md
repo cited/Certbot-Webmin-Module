@@ -21,11 +21,11 @@ As Root:
 
 ```bash
 
-wget https://raw.githubusercontent.com/cited/Certbot-Webmin-Module/master/scripts/pre-install.sh
+wget https://raw.githubusercontent.com/cited/Certbot-Webmin-Module/master/scripts/install.sh
 
-chmod +x pre-install.sh
+chmod +x install.sh
 
-./pre-install.sh
+./install.sh
 ```
 
 When script completes. go to Servers-> Certbot to complete installation.
@@ -70,5 +70,5 @@ Please report issue here or at hello@acugis.com
 Copyright
 ---------
 
-* Copyright AcuGIS, 2020
-* Copyright Cited, Inc., 2020
+* Copyright AcuGIS, 2022
+* Copyright Cited, Inc., 2023
