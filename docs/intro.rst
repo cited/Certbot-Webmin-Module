@@ -10,7 +10,7 @@ It includes a panel for managing all aspects of Certbot.
 
 All installed components are non-forked and un-modified and installed via the projects archive.
 
-.. image:: certbot-Main.png
+.. image:: _static/certbot-Main.png
 
 
 System Requirements
