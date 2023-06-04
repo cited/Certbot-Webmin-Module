@@ -11,49 +11,26 @@ General
 **********************
 
 .. contents:: Table of Contents
-Edit Config
+Layout
 =============
 
-.. image:: _static/config-tab.png
+Once installed, the CertBot module will look as below:
 
-The Config tab is used to edit the following files::
-
-   server.xml
-   web.xml
-   context.xml
-   tomcat-users.xml
-   setenv.sh
-   
-These files can, of course, be edited via the file system or VI as well.
+.. image:: certbot-Main.png
 
 
-Apps
-====
+For the Impatient
+====================
 .. image:: _static/apps-tab.png
 
-The Apps manager allows you to deploy, undeploy, and redeploy WAR files in Apache Tomcat
+To install an SSL certificate, click on Certificates > then click on Letsencrypt form
+
+Enter the domain to be secure, the VHOST location and click "Request Certificate"
 
    
-Java
-=========
-.. image:: _static/java-tab.png
-
-The Java tab is used during installation as well as for updating of JDK.
-
-It can also be used to un-install the selected JDK and replace it with a new version.
-
-
-.. image:: _static/java-installed.png
-
-
 .. note::
-    When installing or removing, there is an option to set as System default.
+    LetsEncrypt limits the number of requests per IP.  If you get an error, be sure to examine logs before making additional requests
 
-
-MapJS
-=========
-
-The MapJS tab is simply a file browser for viewing and editing both OpenLayers and LeafletJS files.
 
 
 
