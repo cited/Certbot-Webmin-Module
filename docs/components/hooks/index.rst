@@ -7,7 +7,7 @@
    :width: 1em
 
 **********************
-Shape Loader
+Hooks
 **********************
 
 .. contents:: Table of Contents
