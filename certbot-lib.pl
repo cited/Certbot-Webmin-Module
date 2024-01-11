@@ -172,10 +172,12 @@ sub get_nginx_configs(){
   my @configs = ();
 
   foreach $d (@nginx_dirs){
-    opendir(DIR, $d) or die $!;
-    my @d_conf = grep {	$_ = "$d/$_"; -f && m/\.conf$/i  } readdir(DIR);
-    closedir(DIR);
-    push(@configs, @d_conf);
+    if (-d $d) {
+      opendir(DIR, $d) or die $!;
+      my @d_conf = grep { $_ = "$d/$_"; -f && m/\.conf$/i  } readdir(DIR);
+      closedir(DIR);
+      push(@configs, @d_conf);
+    }
   }
 
   return sort @configs;
